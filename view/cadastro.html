@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../controller/style.css">
+    <title>Cadastro</title>
+</head>
+<body>
+    <header>
+        <h3>Comércio S.A.</h3>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="cadastro.html">Cadastro</a></li>
+                <li><a href="listagem.html">Listagem</a></li>
+                <li><a href="busca.html">Busca</a></li>
+            </ul>
+        </nav>
+    </header><br>
+
+    <h2>Área de cadastro de clientes</h2> <br>
+
+    <div class="cadastro">
+        <h3>CADASTRAR</h3>
+        <form action="" method="post" id="form_cadastro">
+            <label for="nome">Nome:</label><br>
+                <input type="text" name="nome" id="nome" placeholder="Digite o nome..."><br><br>
+
+            <label for="cpf">CPF:</label><br>
+                <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF..." maxlength="11"><br><br>
+
+            <label for="data_nascimento">Data de nascimento:</label><br>
+                <input type="date" name="data_nascimento" id="data_nascimento"><br><br>
+                
+            <label for="endereco">Endereço:</label><br>
+                <input type="text" name="endereco" id="endereco" placeholder="Digite o endereço..."><br><br>
+
+            <button type="submit" id="button_cadastrar">Cadastrar</button> 
+        </form>
+    </div>
+    <!-- ainda precisa decidir como fazer a parte de contato -->
+
+</body>
+</html>
