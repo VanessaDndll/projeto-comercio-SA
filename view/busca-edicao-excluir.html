@@ -44,6 +44,9 @@
         <p>CPF: <span id="cpfResultado">111.111.111-50</span></p>
         <p>Data de nascimento: <span id="dataNascimentoResultado">03/09/2000</span></p>
         <p>Endereço: <span id="enderecoResultado">Rua das Flores, 123</span></p>
+        <p>Telefone: <span id="telefoneBusca">11 99999-8888</span></p>
+        <p>E-mail: <span id="emailBusca">robertofariasilvaecosta@gmail.com</span></p>
+        <p>Observação: <span id="observacaoBusca">Telefone da esposa</span></p>
     </div><br>
 
     <div class="botoesEditarExcluir">
@@ -55,30 +58,45 @@
 
     <!-- parte que vai mostrar os dados para edição -->
     <h3>Edição</h3>
-    <table class="areaEdicao">
-        <thead class="a">
-            <tr>
-                <th class="colunaListagem">Nome</th>
-                <th class="colunaListagem">CPF</th>
-                <th class="colunaListagem">Data de nascimento</th>
-                <th class="colunaListagem">Endereço</th>
-                <!-- colocar telefone, email e observação -->
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="linhaListagem"><input type="text" value="Roberto"></td>
-                <td class="linhaListagem"><input type="text" value="111.111.111-50"></td>
-                <td class="linhaListagem"><input type="date" value="06/09/2000"></td>
-                <td class="linhaListagem"><input type="text" value="Rua das Flores, 123"></td>
-                <!-- colocar telefone, email e observação -->
-            </tr>
-        </tbody>
-    </table>
 
-    <br>
+    <form action="" method="post">
+        <label>Nome:
+            <input type="text" name="" value="Roberto">
+        </label>
 
-    <div class="divButtonSalvar"><button class="buttonSalvar">Salvar</button></div>
+        <label>CPF:
+            <input type="text" name="" value="111.111.111-50">
+        </label>
+
+        <label>Data de nascimento:
+            <input type="date" id="data" name="" value="2000-09-06" min="1900-01-01">
+        </label>
+
+        <label>Endereço:
+            <input type="text" name="" value="Rua das Flores, 123">
+        </label>
+
+        <label>Telefone:
+            <input type="text" name="" value="11 99999-8888">
+        </label>
+
+        <label>E-mail:
+            <input type="text" name="" value="robertofariasilvaecosta@gmail.com">
+        </label>
+
+        <label>Observação:
+            <textarea></textarea>
+        </label>
+
+        <div class="divButtonSalvar"><button class="buttonSalvar">Salvar</button></div>
+    </form>
+    
+    <script>
+        const hoje = new Date().toISOString().split("T")[0];
+        document.getElementById("data").setAttribute("max", hoje);
+    </script>
+
+    
     
 
 </body>

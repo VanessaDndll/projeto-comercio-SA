@@ -24,31 +24,54 @@
     <div class="cadastro">
         <h3>CADASTRAR</h3>
         <form action="" method="post" id="form_cadastro">
-            <label for="nome">Nome:</label><br>
-                <input type="text" name="nome" id="nome" placeholder="Digite o nome..." required><br><br>
+            <label for="nome">Nome:
+                <input type="text" name="nome" id="nome" placeholder="Digite o nome..." required>
+            </label><br><br>
 
-            <label for="cpf">CPF:</label><br>
-                <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF..." maxlength="11" required><br><br>
+            <label for="cpf">CPF:
+                <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF..." maxlength="14" required>
+            </label><br><br>
 
-            <label for="data_nascimento">Data de nascimento:</label><br>
-                <input type="date" name="data_nascimento" id="data_nascimento"><br><br>
+            <label>Data de nascimento:
+                <input type="date" name="data_nascimento" id="data_nascimento" min="1900-01-01">
+            </label><br><br>
                 
-            <label for="endereco">Endereço:</label><br>
-                <input type="text" name="endereco" id="endereco" placeholder="Digite o endereço..."><br><br>
+            <label for="endereco">Endereço:
+                <input type="text" name="endereco" id="endereco" placeholder="Digite o endereço...">
+            </label><br>
 
-            <label for="telefone">Telefone:</label><br>
-                <input type="text" name="telefone" id="telefone" placeholder="Digite o telefone..."><br><br>
-
-            <label for="email">E-mail:</label><br>
-                <input type="email" name="email" id="email" placeholder="Digite o e-mail..."><br><br>
-            
-            <label for="observacao">Observação:</label><br>
-                <textarea name="observacao" id="observacao"></textarea><br><br>
+            <br><h4>Contatos</h4><br>
+            <div id="contatos"></div>
+            <button type="button" onclick="adicionarContato()">Adicionar Contato</button><br><br>
 
             <button type="submit" id="button_cadastrar">Cadastrar</button> 
         </form>
     </div><br>
-    <!-- ainda precisa decidir como fazer a parte de contato -->
+
+    <script>
+        const hoje = new Date().toISOString().split("T")[0];
+        document.getElementById("data_nascimento").setAttribute("max", hoje);
+
+        function adicionarContato() {
+            let div = document.createElement("div");
+
+            div.innerHTML = `
+                <select name="tipo">
+                    <option value="telefone">Telefone</option>
+                    <option value="email">E-mail</option>
+                </select>
+                <input type="text" name="valor" required>
+                <textarea name="observacao" id="observacao"></textarea>
+                <button type="button" onclick="removerContato(this)">Remover</button><br><br>
+            `;
+
+            document.getElementById("contatos").appendChild(div);
+        }
+
+        function removerContato(botao) {
+            botao.parentNode.remove();
+        }
+    </script>
 
 </body>
 </html>
