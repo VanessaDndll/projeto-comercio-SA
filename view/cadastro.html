@@ -14,7 +14,7 @@
                 <li><a href="index.html">Início</a></li>
                 <li><a href="cadastro.html">Cadastro</a></li>
                 <li><a href="listagem.html">Listagem</a></li>
-                <li><a href="busca.html">Busca</a></li>
+                <li><a href="busca-edicao-excluir.html">Busca</a></li>
             </ul>
         </nav>
     </header><br>
@@ -25,10 +25,10 @@
         <h3>CADASTRAR</h3>
         <form action="" method="post" id="form_cadastro">
             <label for="nome">Nome:</label><br>
-                <input type="text" name="nome" id="nome" placeholder="Digite o nome..."><br><br>
+                <input type="text" name="nome" id="nome" placeholder="Digite o nome..." required><br><br>
 
             <label for="cpf">CPF:</label><br>
-                <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF..." maxlength="11"><br><br>
+                <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF..." maxlength="11" required><br><br>
 
             <label for="data_nascimento">Data de nascimento:</label><br>
                 <input type="date" name="data_nascimento" id="data_nascimento"><br><br>
@@ -36,9 +36,18 @@
             <label for="endereco">Endereço:</label><br>
                 <input type="text" name="endereco" id="endereco" placeholder="Digite o endereço..."><br><br>
 
+            <label for="telefone">Telefone:</label><br>
+                <input type="text" name="telefone" id="telefone" placeholder="Digite o telefone..."><br><br>
+
+            <label for="email">E-mail:</label><br>
+                <input type="email" name="email" id="email" placeholder="Digite o e-mail..."><br><br>
+            
+            <label for="observacao">Observação:</label><br>
+                <textarea name="observacao" id="observacao"></textarea><br><br>
+
             <button type="submit" id="button_cadastrar">Cadastrar</button> 
         </form>
-    </div>
+    </div><br>
     <!-- ainda precisa decidir como fazer a parte de contato -->
 
 </body>

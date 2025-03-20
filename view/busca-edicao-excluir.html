@@ -14,7 +14,7 @@
                 <li><a href="index.html">Início</a></li>
                 <li><a href="cadastro.html">Cadastro</a></li>
                 <li><a href="listagem.html">Listagem</a></li>
-                <li><a href="busca.html">Busca</a></li>
+                <li><a href="busca-edicao-excluir.html">Busca</a></li>
             </ul>
         </nav>
     </header><br>
@@ -36,8 +36,50 @@
 
     <hr>
 
-    
     <!-- buscar informações do cliente e mostrar -->
+
+    <div class="resultadoBusca">
+        <h3>Dados do cliente</h3><br>
+        <p>Nome: <span id="nomeResultado">Roberto</span></p>
+        <p>CPF: <span id="cpfResultado">111.111.111-50</span></p>
+        <p>Data de nascimento: <span id="dataNascimentoResultado">03/09/2000</span></p>
+        <p>Endereço: <span id="enderecoResultado">Rua das Flores, 123</span></p>
+    </div><br>
+
+    <div class="botoesEditarExcluir">
+        <button id="buttonEditar">Editar</button>
+        <button id="buttonExcluir">Excluir</button>
+    </div>
+
+    <br><hr><br>
+
+    <!-- parte que vai mostrar os dados para edição -->
+    <h3>Edição</h3>
+    <table class="areaEdicao">
+        <thead class="a">
+            <tr>
+                <th class="colunaListagem">Nome</th>
+                <th class="colunaListagem">CPF</th>
+                <th class="colunaListagem">Data de nascimento</th>
+                <th class="colunaListagem">Endereço</th>
+                <!-- colocar telefone, email e observação -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="linhaListagem"><input type="text" value="Roberto"></td>
+                <td class="linhaListagem"><input type="text" value="111.111.111-50"></td>
+                <td class="linhaListagem"><input type="date" value="06/09/2000"></td>
+                <td class="linhaListagem"><input type="text" value="Rua das Flores, 123"></td>
+                <!-- colocar telefone, email e observação -->
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+
+    <div class="divButtonSalvar"><button class="buttonSalvar">Salvar</button></div>
+    
 
 </body>
 </html>
