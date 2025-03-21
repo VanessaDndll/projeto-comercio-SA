@@ -1,81 +1,66 @@
-package com.comerciosa.backend.entity;
+package com.comerciosa.backend.dto;
 
 import java.sql.Date;
 import java.util.List;
 
-import jakarta.persistence.*;
+import org.springframework.beans.BeanUtils;
 
-@Entity
-@Table(name = "cliente")
-public class cliente {
+import com.comerciosa.backend.entity.clienteEntity;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @Column(nullable = false)
+public class clienteDTO {
+    private Long id;
     private String nome;
-
-    @Column(unique = true, nullable = false, length = 14)
     private String cpf;
-
-    @Column(name = "data_nascimento", nullable = false)
     private Date dataNascimento;
-    
     private String endereco;
+    private List<contatoDTO> contatos;
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<contato> contatos;
+    public clienteDTO(clienteEntity cliente) {
+        BeanUtils.copyProperties(cliente, this);
+    }
 
-// getters and setters
+    public clienteDTO() {
+        
+    }
 
-    public Integer getId() {
+    // Getters and Setters
+
+    public Long getId() {
         return id;
     }
-
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
-
     public String getNome() {
         return nome;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
-
     public String getCpf() {
         return cpf;
     }
-
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-
     public Date getDataNascimento() {
         return dataNascimento;
     }
-
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-
     public String getEndereco() {
         return endereco;
     }
-
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-
-    public List<contato> getContatos() {
+    public List<contatoDTO> getContatos() {
         return contatos;
     }
-
-    public void setContatos(List<contato> contatos) {
+    public void setContatos(List<contatoDTO> contatos) {
         this.contatos = contatos;
-    } 
+    }
 
     
 }

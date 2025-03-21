@@ -1,5 +1,9 @@
 package com.comerciosa.backend.entity;
 
+import org.springframework.beans.BeanUtils;
+
+import com.comerciosa.backend.dto.contatoDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,7 +15,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "contato")
-public class contato {
+public class contatoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +31,15 @@ public class contato {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
-    private cliente cliente;
+    private clienteEntity cliente;
+
+    public contatoEntity(contatoDTO contato) {
+        BeanUtils.copyProperties(contato, this);
+    }
+
+    public contatoEntity() {
+        
+    }
 
     // Getters and Setters
 
@@ -63,11 +75,11 @@ public class contato {
         this.observacao = observacao;
     }
 
-    public cliente getCliente() {
+    public clienteEntity getCliente() {
         return cliente;
     }
 
-    public void setCliente(cliente cliente) {
+    public void setCliente(clienteEntity cliente) {
         this.cliente = cliente;
     }
 
