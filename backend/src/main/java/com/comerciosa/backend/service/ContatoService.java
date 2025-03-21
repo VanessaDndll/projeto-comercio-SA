@@ -17,7 +17,7 @@ public class ContatoService {
     private ContatoRepository contatoRepository;
 
     // READ
-    public List<contatoDTO> listarClientes () {
+    public List<contatoDTO> listarContatos () {
         List<contatoEntity> contato = contatoRepository.findAll();
         return contato.stream() .map(contatoDTO::new).toList();
     }

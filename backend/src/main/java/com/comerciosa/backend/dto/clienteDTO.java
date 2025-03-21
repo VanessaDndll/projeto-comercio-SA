@@ -13,7 +13,7 @@ public class clienteDTO {
     private String cpf;
     private Date dataNascimento;
     private String endereco;
-    private List<contatoDTO> contatos;
+    private List<contatoDTO> contato;
 
     public clienteDTO(clienteEntity cliente) {
         BeanUtils.copyProperties(cliente, this);
@@ -55,11 +55,11 @@ public class clienteDTO {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    public List<contatoDTO> getContatos() {
-        return contatos;
+    public List<contatoDTO> getContato() {
+        return contato;
     }
-    public void setContatos(List<contatoDTO> contatos) {
-        this.contatos = contatos;
+    public void setContato(List<contatoDTO> contato) {
+        this.contato = contato;
     }
 
     
