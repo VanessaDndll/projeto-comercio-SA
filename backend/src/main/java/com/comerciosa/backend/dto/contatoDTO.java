@@ -2,10 +2,12 @@ package com.comerciosa.backend.dto;
 
 import org.springframework.beans.BeanUtils;
 
+import com.comerciosa.backend.entity.clienteEntity;
 import com.comerciosa.backend.entity.contatoEntity;
 
 public class contatoDTO {
     private Integer id;
+    private clienteEntity cliente;
     private String tipo;
     private String valor;
     private String observacao;
@@ -44,5 +46,12 @@ public class contatoDTO {
         this.observacao = observacao;
     }
 
+    public clienteEntity getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(clienteEntity cliente) {
+        this.cliente = cliente;
+    }
     
 }

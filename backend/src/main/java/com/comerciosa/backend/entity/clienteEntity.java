@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 
 import com.comerciosa.backend.dto.clienteDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 
@@ -28,7 +29,8 @@ public class clienteEntity {
     
     private String endereco;
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<contatoEntity> contatos;
 
     public clienteEntity(clienteDTO cliente) {
@@ -88,6 +90,5 @@ public class clienteEntity {
     public void setContatos(List<contatoEntity> contatos) {
         this.contatos = contatos;
     } 
-
-    
+   
 }
