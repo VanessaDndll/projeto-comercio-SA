@@ -8,7 +8,7 @@ import org.springframework.beans.BeanUtils;
 import com.comerciosa.backend.entity.clienteEntity;
 
 public class clienteDTO {
-    private Long id;
+    private Integer id;
     private String nome;
     private String cpf;
     private Date dataNascimento;
@@ -20,15 +20,15 @@ public class clienteDTO {
     }
 
     public clienteDTO() {
-        
+
     }
 
     // Getters and Setters
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public String getNome() {
