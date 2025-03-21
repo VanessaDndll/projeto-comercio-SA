@@ -1,12 +1,9 @@
 package com.comerciosa.backend.entity;
 
 import java.sql.Date;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import java.util.List;
+
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "cliente")
@@ -26,6 +23,9 @@ public class cliente {
     private Date dataNascimento;
     
     private String endereco;
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<contato> contatos;
 
 // getters and setters
 
@@ -67,6 +67,14 @@ public class cliente {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public List<contato> getContatos() {
+        return contatos;
+    }
+
+    public void setContatos(List<contato> contatos) {
+        this.contatos = contatos;
     } 
 
     
