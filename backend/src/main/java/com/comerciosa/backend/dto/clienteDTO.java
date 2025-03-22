@@ -2,8 +2,9 @@ package com.comerciosa.backend.dto;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import org.springframework.beans.BeanUtils;
+// import org.springframework.beans.BeanUtils;
 
 import com.comerciosa.backend.entity.clienteEntity;
 
@@ -16,12 +17,15 @@ public class clienteDTO {
     private List<contatoDTO> contato;
 
     public clienteDTO(clienteEntity cliente) {
-        BeanUtils.copyProperties(cliente, this);
+        this.id = cliente.getId();
+        this.nome = cliente.getNome();
+        this.cpf = cliente.getCpf();
+        this.dataNascimento = cliente.getDataNascimento();
+        this.endereco = cliente.getEndereco();
+        this.contato = cliente.getContatos().stream().map(contatoDTO::new).collect(Collectors.toList());
     }
 
-    public clienteDTO() {
-
-    }
+    public clienteDTO() {}
 
     // Getters and Setters
 

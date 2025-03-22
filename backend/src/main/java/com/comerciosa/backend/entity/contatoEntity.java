@@ -3,6 +3,7 @@ package com.comerciosa.backend.entity;
 import org.springframework.beans.BeanUtils;
 
 import com.comerciosa.backend.dto.contatoDTO;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,6 +34,7 @@ public class contatoEntity {
 
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_id", nullable = false)
+    @JsonBackReference
     private clienteEntity cliente;
 
 
@@ -40,9 +42,7 @@ public class contatoEntity {
         BeanUtils.copyProperties(contato, this);
     }
 
-    public contatoEntity() {
-        
-    }
+    public contatoEntity() {}
 
     // Getters and Setters
 

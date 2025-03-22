@@ -23,15 +23,12 @@
     
     <div class="edicao">
         <h3>EDIÇÃO/BUSCA/EXCLUIR</h3><br>
-        <!-- <form action="" method="get" id="form_edicao"> -->
-            <label for="nome">Nome:</label><br>
-                <input type="text" name="nome" id="nome" placeholder="Digite o nome..."><br><br>
 
             <label for="cpf">CPF:</label><br>
                 <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF..." maxlength="14"><br><br>
 
             <button onclick="buscarCliente()" id="button_buscar_informacao">Buscar informações</button>
-        <!-- </form> -->
+
     </div><br>
 
     <hr>
@@ -50,21 +47,21 @@
                 <th>Observação</th>
             </tr>
         </thead>
-        <tbody></tbody>
+        <tbody id="contatosCliente"></tbody>
     </table>
 
     <script src="busca.js"></script>
 
-    <!-- <div class="resultadoBusca">
+    <div class="resultadoBusca">
         <h3>Dados do cliente</h3><br>
-        <p>Nome: <span id="nomeResultado">Roberto</span></p>
-        <p>CPF: <span id="cpfResultado">111.111.111-50</span></p>
-        <p>Data de nascimento: <span id="dataNascimentoResultado">03/09/2000</span></p>
-        <p>Endereço: <span id="enderecoResultado">Rua das Flores, 123</span></p>
-        <p>Telefone: <span id="telefoneBusca">11 99999-8888</span></p>
-        <p>E-mail: <span id="emailBusca">robertofariasilvaecosta@gmail.com</span></p>
-        <p>Observação: <span id="observacaoBusca">Telefone da esposa</span></p>
-    </div><br> -->
+        <p>Nome: <span id="nome"></span></p>
+        <p>CPF: <span id="cpf"></span></p>
+        <p>Data de nascimento: <span id="dataNascimento"></span></p>
+        <p>Endereço: <span id="endereco"></span></p>
+        <p>Telefone: <span id="telefone"></span></p>
+        <p>E-mail: <span id="email"></span></p>
+        <p>Observação: <span id="observacao"></span></p>
+    </div><br>
 
     <div class="botoesEditarExcluir">
         <button id="buttonEditar">Editar</button>

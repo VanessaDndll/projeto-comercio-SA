@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 
 import com.comerciosa.backend.dto.clienteDTO;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
 
@@ -29,16 +29,19 @@ public class clienteEntity {
     
     private String endereco;
 
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
-    @JsonIgnore
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
     private List<contatoEntity> contatos;
 
     public clienteEntity(clienteDTO cliente) {
         BeanUtils.copyProperties(cliente, this);
     }
 
-    public clienteEntity() {
-        
+    public clienteEntity() {}
+
+    public clienteEntity(String nome, String cpf) {
+        this.nome = nome;
+        this.cpf = cpf;
     }
 
 // getters and setters

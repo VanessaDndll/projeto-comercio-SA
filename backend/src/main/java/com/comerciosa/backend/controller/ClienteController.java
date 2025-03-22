@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.comerciosa.backend.dto.clienteDTO;
 import com.comerciosa.backend.entity.clienteEntity;
-import com.comerciosa.backend.service.clienteService;
+import com.comerciosa.backend.service.ClienteService;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -25,12 +25,12 @@ import com.comerciosa.backend.service.clienteService;
 public class ClienteController {
 
     @Autowired
-    private clienteService clienteService;
+    private ClienteService clienteService;
 
     @GetMapping("/buscar")
-    public ResponseEntity<clienteEntity> buscarCliente(@RequestParam String nome, @RequestParam String cpf) {
-        clienteEntity cliente = clienteService.buscarCliente(nome, cpf);
-
+    public ResponseEntity<clienteEntity> buscarCliente(@RequestParam String cpf) {
+        
+        clienteEntity cliente = clienteService.buscarCliente(cpf);
         if (cliente != null) {
             return ResponseEntity.ok(cliente);
         } else {

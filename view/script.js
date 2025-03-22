@@ -30,5 +30,3 @@ function buscarContatos() {
         })
         .catch(error => console.error("Erro ao buscar contatos:", error));
 }
-
-console.log("JS ta pegando");

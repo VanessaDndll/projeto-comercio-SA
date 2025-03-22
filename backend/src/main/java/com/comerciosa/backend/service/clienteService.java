@@ -4,26 +4,34 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.comerciosa.backend.dto.clienteDTO;
 import com.comerciosa.backend.entity.clienteEntity;
 import com.comerciosa.backend.repository.clienteRepository;
 
 @Service
-public class clienteService {
+public class ClienteService {
 
     @Autowired
     private clienteRepository clienteRepository;
-
-    public clienteEntity buscarCliente(String nome, String cpf) {
-        return clienteRepository.findByNomeAndCpf(nome, cpf)
+    
+    @Transactional
+    public clienteEntity buscarCliente(String cpf) {
+        return clienteRepository.findByCpfWithContatos(cpf)
                 .orElse(null);
     }
+
+
+    // public clienteEntity buscarCliente(Strg cpf) {
+    //     return clienteRepository.findByCpf(cpf)
+    //             .orElse(null);
+    // }
 
     // READ
     public List<clienteDTO> listarClientes () {
         List<clienteEntity> cliente = clienteRepository.findAll();
-        return cliente.stream() .map(clienteDTO::new).toList();
+        return cliente.stream().map(clienteDTO::new).toList();
     }
 
     // CREATE
