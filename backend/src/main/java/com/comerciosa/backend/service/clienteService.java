@@ -15,6 +15,11 @@ public class clienteService {
     @Autowired
     private clienteRepository clienteRepository;
 
+    public clienteEntity buscarCliente(String nome, String cpf) {
+        return clienteRepository.findByNomeAndCpf(nome, cpf)
+                .orElse(null);
+    }
+
     // READ
     public List<clienteDTO> listarClientes () {
         List<clienteEntity> cliente = clienteRepository.findAll();
