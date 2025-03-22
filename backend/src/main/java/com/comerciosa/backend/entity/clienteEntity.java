@@ -29,7 +29,7 @@ public class clienteEntity {
     
     private String endereco;
 
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<contatoEntity> contatos;
 
