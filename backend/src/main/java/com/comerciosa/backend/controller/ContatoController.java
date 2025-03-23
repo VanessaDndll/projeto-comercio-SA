@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.comerciosa.backend.dto.contatoDTO;
+import com.comerciosa.backend.dto.ContatoDTO;
 import com.comerciosa.backend.service.ContatoService;
 
 @RestController
@@ -26,19 +26,19 @@ public class ContatoController {
 
     // READ
     @GetMapping
-    public List<contatoDTO> listarContatos() {
+    public List<ContatoDTO> listarContatos() {
         return contatoService.listarContatos();
     }
 
     // CREATE
     @PostMapping
-    public void inserir(@RequestBody contatoDTO contato) {
+    public void inserir(@RequestBody ContatoDTO contato) {
         contatoService.inserir(contato);
     }
 
     // UPDATE
     @PutMapping
-    public contatoDTO alterar(@RequestBody contatoDTO contato) {
+    public ContatoDTO alterar(@RequestBody ContatoDTO contato) {
         return contatoService.alterar(contato);
     }
 

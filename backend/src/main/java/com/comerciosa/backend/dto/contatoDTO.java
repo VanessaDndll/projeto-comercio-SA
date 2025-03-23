@@ -2,22 +2,21 @@ package com.comerciosa.backend.dto;
 
 import org.springframework.beans.BeanUtils;
 
-import com.comerciosa.backend.entity.clienteEntity;
-import com.comerciosa.backend.entity.contatoEntity;
+import com.comerciosa.backend.entity.ClienteEntity;
+import com.comerciosa.backend.entity.ContatoEntity;
 
-public class contatoDTO {
+public class ContatoDTO {
     private Integer id;
-    private clienteEntity cliente;
+    private ClienteEntity cliente;
     private String tipo;
     private String valor;
     private String observacao;
 
-    public contatoDTO(contatoEntity contato) {
+    public ContatoDTO(ContatoEntity contato) {
         BeanUtils.copyProperties(contato, this);
-        
     }
 
-    public contatoDTO() {
+    public ContatoDTO() {
         
     }
 
@@ -47,11 +46,11 @@ public class contatoDTO {
         this.observacao = observacao;
     }
 
-    public clienteEntity getCliente() {
+    public ClienteEntity getCliente() {
         return cliente;
     }
 
-    public void setCliente(clienteEntity cliente) {
+    public void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
     }
     

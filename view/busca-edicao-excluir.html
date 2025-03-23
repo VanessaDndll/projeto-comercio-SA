@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../controller/style.css">
+    <script defer src="busca.js"></script>
     <title>Edição</title>
 </head>
 <body>
@@ -36,80 +37,25 @@
     <hr>
 
     <!-- RESULTADO DA BUSCA -->
-
-    <table id="resultado" border="1">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>CPF</th>
-                <th>Data de Nascimento</th>
-                <th>Endereço</th>
-                <th>Telefone</th>
-                <th>E-mail</th>
-                <th>Observação</th>
-            </tr>
-        </thead>
-        <tbody id="contatosCliente"></tbody>
-    </table>
-
-    <script src="busca.js"></script>
-
     <div class="resultadoBusca">
         <h3>Dados do cliente</h3><br>
-        <p>Nome: <span id="nome"></span></p>
-        <p>CPF: <span id="cpf"></span></p>
-        <p>Data de nascimento: <span id="dataNascimento"></span></p>
-        <p>Endereço: <span id="endereco"></span></p>
-        <p>Telefone: <span id="telefone"></span></p>
-        <p>E-mail: <span id="email"></span></p>
-        <p>Observação: <span id="observacao"></span></p>
-    </div><br>
-
+        <p>Nome: <input type="text" readonly id="nome"></input type="text" readonly></p>
+        <p>CPF: <input type="text" readonly id="cpfResult"></input type="text" readonly></p>
+        <p>Data de nascimento: <input type="date" readonly id="dataNascimento"></input type="text" readonly></p>
+        <p>Endereço: <input type="text" readonly id="endereco"></input type="text" readonly></p>
+        <div id="contatosCliente"></div>
+    </div>
     <div class="botoesEditarExcluir">
-        <button id="buttonEditar">Editar</button>
-        <button id="buttonExcluir">Excluir</button>
+        <button id="buttonEditar" onclick="editar()">Editar</button>
+        <button id="buttonSalvar" onclick="salvarEdicao()">Salvar</button>
+        <button id="buttonExcluir" onclick="excluir()">Excluir</button>
     </div>
 
-    <br><hr><br>
+    <br>
 
-    <!-- parte que vai mostrar os dados para edição -->
-    <h3>Edição</h3>
-
-    <form action="" method="post">
-        <label>Nome:
-            <input type="text" name="" value="Roberto">
-        </label>
-
-        <label>CPF:
-            <input type="text" name="" value="111.111.111-50">
-        </label>
-
-        <label>Data de nascimento:
-            <input type="date" id="data" name="" value="2000-09-06" min="1900-01-01">
-        </label>
-
-        <label>Endereço:
-            <input type="text" name="" value="Rua das Flores, 123">
-        </label>
-
-        <label>Telefone:
-            <input type="text" name="" value="11 99999-8888">
-        </label>
-
-        <label>E-mail:
-            <input type="text" name="" value="robertofariasilvaecosta@gmail.com">
-        </label>
-
-        <label>Observação:
-            <textarea></textarea>
-        </label>
-
-        <div class="divButtonSalvar"><button class="buttonSalvar">Salvar</button></div>
-    </form>
-    
     <script>
         const hoje = new Date().toISOString().split("T")[0];
-        document.getElementById("data").setAttribute("max", hoje);
+        document.getElementById("dataNascimento").setAttribute("max", hoje);
     </script>
 
     

@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.comerciosa.backend.dto.clienteDTO;
-import com.comerciosa.backend.entity.clienteEntity;
+import com.comerciosa.backend.dto.ClienteDTO;
+import com.comerciosa.backend.entity.ClienteEntity;
 import com.comerciosa.backend.service.ClienteService;
 
 @RestController
@@ -29,9 +28,9 @@ public class ClienteController {
 
     // Bucando cliente pelo cpf
     @GetMapping("/buscar")
-    public ResponseEntity<clienteEntity> buscarCliente(@RequestParam String cpf) {
+    public ResponseEntity<ClienteEntity> buscarCliente(@RequestParam String cpf) {
 
-        clienteEntity cliente = clienteService.buscarCliente(cpf);
+        ClienteEntity cliente = clienteService.buscarCliente(cpf);
         if (cliente != null) {
             return ResponseEntity.ok(cliente);
         } else {
@@ -41,26 +40,37 @@ public class ClienteController {
 
     // Cadastrar cliente
     @PostMapping("/cadastrar")
-    public ResponseEntity<clienteDTO> inserir(@RequestBody clienteDTO cliente) {
-        clienteDTO clienteSalvo = clienteService.inserir(cliente);
+    public ResponseEntity<ClienteDTO> inserir(@RequestBody ClienteDTO cliente) {
+        ClienteDTO clienteSalvo = clienteService.inserir(cliente);
         return ResponseEntity.status(201).body(clienteSalvo);
     }
 
     // READ
     @GetMapping
-    public List<clienteDTO> listarClientes() {
+    public List<ClienteDTO> listarClientes() {
         return clienteService.listarClientes();
     }
 
     // UPDATE
     @PutMapping("/{id}")
-    public ResponseEntity<clienteDTO> atualizarCliente(
+    public ResponseEntity<ClienteDTO> atualizarCliente(
             @PathVariable Integer id,
-            @RequestBody clienteDTO dto) {
+            @RequestBody ClienteDTO dto) {
         dto.setId(id);
-        clienteEntity updated = clienteService.atualizarCliente(dto);
-        return ResponseEntity.ok(new clienteDTO(updated));
+        ClienteEntity updated = clienteService.atualizarCliente(dto);
+        return ResponseEntity.ok(new ClienteDTO(updated));
     }
+
+    // UPDATE
+    // @PutMapping("/{id}")
+    // public ResponseEntity<ClienteDTO> atualizarCliente(
+    // @PathVariable String id,
+    // @RequestBody ClienteDTO dto) {
+    // Integer idEmInt = Integer.parseInt(id);
+    // dto.setId(idEmInt);
+    // ClienteEntity updated = clienteService.atualizarCliente(dto);
+    // return ResponseEntity.ok(new ClienteDTO(updated));
+    // }
 
     // DELETE
     @DeleteMapping("/{id}")

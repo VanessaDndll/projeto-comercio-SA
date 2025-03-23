@@ -2,7 +2,7 @@ package com.comerciosa.backend.entity;
 
 import org.springframework.beans.BeanUtils;
 
-import com.comerciosa.backend.dto.contatoDTO;
+import com.comerciosa.backend.dto.ContatoDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
@@ -17,7 +17,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "contato")
-public class contatoEntity {
+public class ContatoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,14 +35,14 @@ public class contatoEntity {
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_id", nullable = false)
     @JsonBackReference
-    private clienteEntity cliente;
+    private ClienteEntity cliente;
 
 
-    public contatoEntity(contatoDTO contato) {
+    public ContatoEntity(ContatoDTO contato) {
         BeanUtils.copyProperties(contato, this);
     }
 
-    public contatoEntity() {}
+    public ContatoEntity() {}
 
     // Getters and Setters
 
@@ -78,11 +78,11 @@ public class contatoEntity {
         this.observacao = observacao;
     }
 
-    public clienteEntity getCliente() {
+    public ClienteEntity getCliente() {
         return cliente;
     }
 
-    public void setCliente(clienteEntity cliente) {
+    public void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
     }
 

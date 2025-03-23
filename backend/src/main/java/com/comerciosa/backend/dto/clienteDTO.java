@@ -1,33 +1,33 @@
 package com.comerciosa.backend.dto;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 // import org.springframework.beans.BeanUtils;
 
-import com.comerciosa.backend.entity.clienteEntity;
+import com.comerciosa.backend.entity.ClienteEntity;
 
-public class clienteDTO {
+public class ClienteDTO {
     private Integer id;
     private String nome;
     private String cpf;
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
     private String endereco;
-    private List<contatoDTO> contatos = new ArrayList<>();
+    private List<ContatoDTO> contatos = new ArrayList<>();
 
-    public clienteDTO(clienteEntity cliente) {
+    public ClienteDTO(ClienteEntity cliente) {
         this.id = cliente.getId();
         this.nome = cliente.getNome();
         this.cpf = cliente.getCpf();
         this.dataNascimento = cliente.getDataNascimento();
         this.endereco = cliente.getEndereco();
-        this.contatos = (cliente.getContato() != null) ? cliente.getContato().stream().map(contatoDTO::new).collect(Collectors.toList()) : new ArrayList<>();
+        this.contatos = (cliente.getContatos() != null) ? cliente.getContatos().stream().map(ContatoDTO::new).collect(Collectors.toList()) : new ArrayList<>();
     }
 
 
-    public clienteDTO() {}
+    public ClienteDTO() {}
 
     // Getters and Setters
 
@@ -49,10 +49,10 @@ public class clienteDTO {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
     public String getEndereco() {
@@ -61,10 +61,10 @@ public class clienteDTO {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    public List<contatoDTO> getContato() {
+    public List<ContatoDTO> getContatos() {
         return contatos;
     }
-    public void setContato(List<contatoDTO> contatos) {
+    public void setContato(List<ContatoDTO> contatos) {
         this.contatos = contatos;
     }
 

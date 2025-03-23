@@ -1,18 +1,18 @@
 package com.comerciosa.backend.entity;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 
-import com.comerciosa.backend.dto.clienteDTO;
+import com.comerciosa.backend.dto.ClienteDTO;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "cliente")
-public class clienteEntity {
+public class ClienteEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,21 +25,21 @@ public class clienteEntity {
     private String cpf;
 
     @Column(name = "data_nascimento", nullable = false)
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
     
     private String endereco;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
-    private List<contatoEntity> contatos;
+    private List<ContatoEntity> contatos;
 
-    public clienteEntity(clienteDTO cliente) {
+    public ClienteEntity(ClienteDTO cliente) {
         BeanUtils.copyProperties(cliente, this);
     }
 
-    public clienteEntity() {}
+    public ClienteEntity() {}
 
-    public clienteEntity(String nome, String cpf) {
+    public ClienteEntity(String nome, String cpf) {
         this.nome = nome;
         this.cpf = cpf;
     }
@@ -70,11 +70,11 @@ public class clienteEntity {
         this.cpf = cpf;
     }
 
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -86,11 +86,11 @@ public class clienteEntity {
         this.endereco = endereco;
     }
 
-    public List<contatoEntity> getContato() {
+    public List<ContatoEntity> getContatos() {
         return contatos;
     }
 
-    public void setContato(List<contatoEntity> contatos) {
+    public void setContato(List<ContatoEntity> contatos) {
         this.contatos = contatos;
     } 
    

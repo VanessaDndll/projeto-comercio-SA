@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../controller/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h3>Comércio S.A.</h3>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="cadastro.html">Cadastro</a></li>
+                <li><a href="listagem.html">Listagem</a></li>
+                <li><a href="busca-edicao-excluir.html">Busca</a></li>
+            </ul>
+        </nav>
+    </header><br>
+    <h2>Edição</h2>
+    <form id="form_cadastro">
+        <label for="nome">Nome:
+            <input type="text" name="nome" id="nome" placeholder="Digite o nome..." required>
+        </label><br><br>
+
+        <label for="cpf">CPF:
+            <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF..." maxlength="14" required>
+        </label><br><br>
+
+        <label>Data de nascimento:
+            <input type="date" name="data_nascimento" id="data_nascimento" min="1900-01-01">
+        </label><br><br>
+
+        <label for="endereco">Endereço:
+            <input type="text" name="endereco" id="endereco" placeholder="Digite o endereço...">
+        </label><br>
+
+        <br>
+        <h4>Contatos</h4><br>
+        <div id="contato"></div>
+        <button type="button" onclick="adicionarContato()">Adicionar Contato</button><br><br>
+
+        <button type="submit" id="button_cadastrar">Cadastrar</button>
+    </form>
+
+    <script src="editar.js"></script>
+
+</body>
+
+</html>
