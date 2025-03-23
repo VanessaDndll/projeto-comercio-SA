@@ -2,6 +2,7 @@ package com.comerciosa.backend.dto;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 // import org.springframework.beans.BeanUtils;
@@ -14,7 +15,7 @@ public class clienteDTO {
     private String cpf;
     private Date dataNascimento;
     private String endereco;
-    private List<contatoDTO> contato;
+    private List<contatoDTO> contatos = new ArrayList<>();
 
     public clienteDTO(clienteEntity cliente) {
         this.id = cliente.getId();
@@ -22,8 +23,9 @@ public class clienteDTO {
         this.cpf = cliente.getCpf();
         this.dataNascimento = cliente.getDataNascimento();
         this.endereco = cliente.getEndereco();
-        this.contato = cliente.getContatos().stream().map(contatoDTO::new).collect(Collectors.toList());
+        this.contatos = (cliente.getContato() != null) ? cliente.getContato().stream().map(contatoDTO::new).collect(Collectors.toList()) : new ArrayList<>();
     }
+
 
     public clienteDTO() {}
 
@@ -60,10 +62,10 @@ public class clienteDTO {
         this.endereco = endereco;
     }
     public List<contatoDTO> getContato() {
-        return contato;
+        return contatos;
     }
-    public void setContato(List<contatoDTO> contato) {
-        this.contato = contato;
+    public void setContato(List<contatoDTO> contatos) {
+        this.contatos = contatos;
     }
 
     

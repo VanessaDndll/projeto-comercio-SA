@@ -86,11 +86,11 @@ public class clienteEntity {
         this.endereco = endereco;
     }
 
-    public List<contatoEntity> getContatos() {
+    public List<contatoEntity> getContato() {
         return contatos;
     }
 
-    public void setContatos(List<contatoEntity> contatos) {
+    public void setContato(List<contatoEntity> contatos) {
         this.contatos = contatos;
     } 
    

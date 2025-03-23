@@ -1,77 +1,137 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../controller/style.css">
-    <title>Cadastro</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../controller/style.css">
+  <title>Cadastro</title>
 </head>
+
 <body>
-    <header>
-        <h3>Comércio S.A.</h3>
-        <nav class="nav">
-            <ul class="nav-list">
-                <li><a href="index.html">Início</a></li>
-                <li><a href="cadastro.html">Cadastro</a></li>
-                <li><a href="listagem.html">Listagem</a></li>
-                <li><a href="busca-edicao-excluir.html">Busca</a></li>
-            </ul>
-        </nav>
-    </header><br>
+  <header>
+    <h3>Comércio S.A.</h3>
+    <nav class="nav">
+      <ul class="nav-list">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="cadastro.html">Cadastro</a></li>
+        <li><a href="listagem.html">Listagem</a></li>
+        <li><a href="busca-edicao-excluir.html">Busca</a></li>
+      </ul>
+    </nav>
+  </header><br>
 
-    <h2>Área de cadastro de clientes</h2> <br>
+  <h2>Área de cadastro de clientes</h2> <br>
 
-    <div class="cadastro">
-        <h3>CADASTRAR</h3>
-        <form action="" method="post" id="form_cadastro">
-            <label for="nome">Nome:
-                <input type="text" name="nome" id="nome" placeholder="Digite o nome..." required>
-            </label><br><br>
+  <div class="cadastro">
+    <h3>CADASTRAR</h3>
+    <form id="form_cadastro">
+      <label for="nome">Nome:
+        <input type="text" name="nome" id="nome" placeholder="Digite o nome..." required>
+      </label><br><br>
 
-            <label for="cpf">CPF:
-                <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF..." maxlength="14" required>
-            </label><br><br>
+      <label for="cpf">CPF:
+        <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF..." maxlength="14" required>
+      </label><br><br>
 
-            <label>Data de nascimento:
-                <input type="date" name="data_nascimento" id="data_nascimento" min="1900-01-01">
-            </label><br><br>
-                
-            <label for="endereco">Endereço:
-                <input type="text" name="endereco" id="endereco" placeholder="Digite o endereço...">
-            </label><br>
+      <label>Data de nascimento:
+        <input type="date" name="data_nascimento" id="data_nascimento" min="1900-01-01">
+      </label><br><br>
 
-            <br><h4>Contatos</h4><br>
-            <div id="contatos"></div>
-            <button type="button" onclick="adicionarContato()">Adicionar Contato</button><br><br>
+      <label for="endereco">Endereço:
+        <input type="text" name="endereco" id="endereco" placeholder="Digite o endereço...">
+      </label><br>
 
-            <button type="submit" id="button_cadastrar">Cadastrar</button> 
-        </form>
-    </div><br>
+      <br>
+      <h4>Contatos</h4><br>
+      <div id="contato"></div>
+      <button type="button" onclick="adicionarContato()">Adicionar Contato</button><br><br>
 
-    <script>
-        const hoje = new Date().toISOString().split("T")[0];
-        document.getElementById("data_nascimento").setAttribute("max", hoje);
+      <button type="submit" id="button_cadastrar">Cadastrar</button>
+    </form>
+  </div><br>
 
-        function adicionarContato() {
-            let div = document.createElement("div");
+  <script>
+    const hoje = new Date().toISOString().split("T")[0];
+    document.getElementById("data_nascimento").setAttribute("max", hoje);
 
-            div.innerHTML = `
-                <select name="tipo">
+    let contName = 1;
+
+    function adicionarContato() {
+      let div = document.createElement("div");
+      div.classList.add("contato-group");
+
+      div.innerHTML = `
+                <select name="tipo${contName}">
                     <option value="telefone">Telefone</option>
                     <option value="email">E-mail</option>
                 </select>
-                <input type="text" name="valor" required>
-                <textarea name="observacao" id="observacao"></textarea>
+                <input type="text" name="valor${contName}" required>
+                <textarea name="observacao${contName}" ></textarea>
                 <button type="button" onclick="removerContato(this)">Remover</button><br><br>
             `;
+      contName++;
+      document.getElementById("contato").appendChild(div);
+    }
 
-            document.getElementById("contatos").appendChild(div);
-        }
+    function removerContato(botao) {
+      botao.parentNode.remove();
+    }
 
-        function removerContato(botao) {
-            botao.parentNode.remove();
+    document.getElementById("form_cadastro").addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      console.log("Enviando form");
+      
+
+      // Build the client object from form fields
+      const cliente = {
+        nome: document.getElementById("nome").value,
+        cpf: document.getElementById("cpf").value,
+        dataNascimento: document.getElementById("data_nascimento").value,
+        endereco: document.getElementById("endereco").value,
+        contato: []
+      };
+
+      let contNamePush = 1;
+
+      // Loop over each contact group
+      document.querySelectorAll(".contato-group").forEach(group => {
+        const tipo = group.querySelector(`select[name="tipo${contNamePush}"]`).value;
+        const valor = group.querySelector(`input[name="valor${contNamePush}"]`).value;
+        const observacao = group.querySelector(`textarea[name="observacao${contNamePush}"]`).value;
+        contNamePush++;
+        cliente.contato.push({
+          tipo,
+          valor,
+          observacao
+        });
+      });
+
+      try {
+        const response = await fetch("http://localhost:8080/cliente/cadastrar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(cliente)
+        });
+        console.log(`Conteudo sendo enviado: `, cliente);
+        
+        if (response.ok) {
+          alert("Cliente cadastrado com sucesso!");
+          // Optionally, reset the form:
+          document.getElementById("form_cadastro").reset();
+          document.getElementById("contato").innerHTML = "";
+        } else {
+          alert("Erro ao cadastrar o cliente.");
         }
-    </script>
+      } catch (error) {
+        console.error("Erro:", error);
+      }
+    });
+  </script>
 
 </body>
+
 </html>

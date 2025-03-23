@@ -14,6 +14,7 @@ public class contatoDTO {
 
     public contatoDTO(contatoEntity contato) {
         BeanUtils.copyProperties(contato, this);
+        
     }
 
     public contatoDTO() {
