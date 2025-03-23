@@ -30,7 +30,7 @@ public class ClienteController {
     // Bucando cliente pelo cpf
     @GetMapping("/buscar")
     public ResponseEntity<clienteEntity> buscarCliente(@RequestParam String cpf) {
-        
+
         clienteEntity cliente = clienteService.buscarCliente(cpf);
         if (cliente != null) {
             return ResponseEntity.ok(cliente);
@@ -46,7 +46,6 @@ public class ClienteController {
         return ResponseEntity.status(201).body(clienteSalvo);
     }
 
-
     // READ
     @GetMapping
     public List<clienteDTO> listarClientes() {
@@ -54,9 +53,13 @@ public class ClienteController {
     }
 
     // UPDATE
-    @PutMapping
-    public clienteDTO alterar(@RequestBody clienteDTO cliente) {
-        return clienteService.alterar(cliente);
+    @PutMapping("/{id}")
+    public ResponseEntity<clienteDTO> atualizarCliente(
+            @PathVariable Integer id,
+            @RequestBody clienteDTO dto) {
+        dto.setId(id);
+        clienteEntity updated = clienteService.atualizarCliente(dto);
+        return ResponseEntity.ok(new clienteDTO(updated));
     }
 
     // DELETE

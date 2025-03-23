@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.comerciosa.backend.dto.clienteDTO;
+import com.comerciosa.backend.dto.contatoDTO;
 import com.comerciosa.backend.entity.clienteEntity;
 import com.comerciosa.backend.entity.contatoEntity;
 import com.comerciosa.backend.repository.clienteRepository;
@@ -42,7 +43,7 @@ public class ClienteService {
         }
         return new clienteDTO(savedCliente);
     }
-    
+
     // Bucando cliente por cpf
     @Transactional
     public clienteEntity buscarCliente(String cpf) {
@@ -51,31 +52,44 @@ public class ClienteService {
     }
 
     // READ
-    public List<clienteDTO> listarClientes () {
+    public List<clienteDTO> listarClientes() {
         List<clienteEntity> cliente = clienteRepository.findAll();
         return cliente.stream().map(clienteDTO::new).toList();
     }
 
-    // // CREATE
-    // public void inserir(clienteDTO cliente) {
-    //     clienteEntity clienteEntity = new clienteEntity(cliente);
-    //     clienteRepository.save(clienteEntity);
-    // }
-
     // UPDATE
-    public clienteDTO alterar(clienteDTO cliente) {
-        clienteEntity clienteEntity = new clienteEntity(cliente);
-        return new clienteDTO(clienteRepository.save(clienteEntity));
+    @Transactional
+    public clienteEntity atualizarCliente(clienteDTO dto) {
+        clienteEntity existing = clienteRepository.findById(dto.getId())
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+
+        existing.setNome(dto.getNome());
+        existing.setCpf(dto.getCpf());
+        existing.setDataNascimento(dto.getDataNascimento());
+        existing.setEndereco(dto.getEndereco());
+
+        existing.getContato().clear();
+
+        if (dto.getContato() != null) {
+            for (contatoDTO contatoDto : dto.getContato()) {
+                contatoEntity contato = new contatoEntity(contatoDto);
+                contato.setCliente(existing);
+                existing.getContato().add(contato);
+            }
+        }
+
+        return clienteRepository.save(existing);
     }
 
     // DELETE
     public void excluir(Integer id) {
         clienteEntity cliente = clienteRepository.findById(id).get();
-        clienteRepository.delete(cliente);
-    }
+        List<contatoEntity> contatos = cliente.getContato();
 
-    // READ by id
-    public clienteDTO buscarPorId(Integer id) {
-        return new clienteDTO(clienteRepository.findById(id).get());
+        for (contatoEntity contato : contatos) {
+            contatoRepository.delete(contato);
+        }
+
+        clienteRepository.delete(cliente);
     }
 }
