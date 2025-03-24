@@ -79,4 +79,4 @@ E coloque o seguinte comando para ativar a API:
 mvn spring-boot:run
 ```
 
-Com a API ativa e funcionando, abrar o arquivo index.html para poder começar a usar.
+Com a API ativa e funcionando, abrir o arquivo *index.html* para poder começar a usar.
