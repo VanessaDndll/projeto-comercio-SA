@@ -6,7 +6,6 @@ Projeto feito para uma empresa fictícia Comércio S.A. que precisava de um site
 Coisas necessários para o funcionamento da agenda virtual:
 * [XAMPP](https://www.apachefriends.org/pt_br/index.html) - Cria e gerencia servidores web locais.
 * [Maven](https://maven.apache.org/) - Gerente de Dependências.
-* [Node.js](https://nodejs.org/en/download) - Interpretador de código JavaScript.
 * [MySQL Workbench](https://downloads.mysql.com/archives/workbench/) - Ferramenta visual de design de banco de dados para modelagem de dados.
 * [Java 21 ou superior](https://www.oracle.com/br/java/technologies/downloads/#java24) - Rodar aplicações.
 * [Spring Boot](https://docs.spring.io/spring-boot/installing.html) - Estrutura Web de software livre em Java.
@@ -15,7 +14,7 @@ Coisas necessários para o funcionamento da agenda virtual:
 ## Instalação
 Dentro do VSCode, abra o Terminal pressionando:
 
-ctrl + J
+Ctrl + J
 
 Ou vá em View > Terminal.
 
@@ -58,11 +57,11 @@ Para iniciar o servidor local.
 ### Criar banco de dados
 Abra o MySQL Workbench e faça o seguinte caminho:
 
-Vá em MySQL Connections +
+Vá em *MySQL Connections +*
 
-Em Connection Name coloque: comersioSA e clique em ok
+Em *Connection Name* coloque: comersioSA e clique em *Ok*
 
-Selecione o comercioSA
+Selecione o *comercioSA*
 
 Para abrir o banco inicial siga:
 
@@ -72,7 +71,7 @@ Navegue até a pasta com o repositório clonado e selecione:
 
 init.sql
 
-Selecione tudo com ctrl + A e aperte no icone de raio para criar o banco.
+Selecione tudo com Ctrl + A e aperte no icone de raio para criar o banco.
 
 ### Ativando a API
 Com a pasta extraída já na IDE, abra o terminal com o comando ctrl + J.
