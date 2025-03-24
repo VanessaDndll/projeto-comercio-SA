@@ -180,6 +180,7 @@ h2 {
 
 .resultadoBusca input {
     padding-left: 3px;
+    width: 100%;
 }
 
 .dados-cliente {
@@ -189,14 +190,6 @@ h2 {
 
 #contatosCliente {
     width: 100%;  
-}
-
-#nomeResult, #enderecoResult {
-    width: 100%;
-}
-
-#nomeResult, #cpfResult, #dataNascimento {
-    margin-bottom: 5px;
 }
 
 .botoesEditarExcluir {

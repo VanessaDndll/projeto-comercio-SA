@@ -57,7 +57,7 @@ function preencherTabela(cliente) {
         cliente.contatos.forEach(contato => {
             const row = `
             <div class='contato'>
-                <p><hr></p>
+                <br><hr><br>
                 <p>Tipo: <input type='text' name='tipo' value='${contato.tipo}' readonly></p>
                 <p>Contato: <input type='text' name='valor' value='${contato.valor}' readonly></input type='text' readonly></p>
                 <p>Observação: <input type='text' name='observacao' value='${contato.observacao || 'Sem observação'}' readonly></input type='text' readonly></p>
@@ -126,6 +126,7 @@ function salvarEdicao() {
         },
         body: JSON.stringify(dados)
     });
+    alert("Dados do cliente atualizado com sucesso.");
 }
 
 // FUNCTION DO buttonExcluir PARA EXCLUIR O CLIENTE E SEUS CONTATOS
