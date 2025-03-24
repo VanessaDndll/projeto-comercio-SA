@@ -16,7 +16,7 @@ Dentro do VSCode, abra o Terminal pressionando:
 
 Ctrl + J
 
-Ou vá em View > Terminal.
+Ou vá em *View > Terminal*
 
 No Terminal, navegue até a pasta onde deseja clonar o repositótio
 
@@ -36,12 +36,6 @@ Após clonar, entre no repositório com o comando:
 cd comercio-SA/backend
 ```
 
-E abra o projeto com:
-
-```
-code .
-```
-
 ## Executando
 Orientações para executar o código.
 
@@ -59,17 +53,14 @@ Abra o MySQL Workbench e faça o seguinte caminho:
 
 Vá em *MySQL Connections +*
 
-Em *Connection Name* coloque: comersioSA e clique em *Ok*
+Em *Connection Name* coloque: comercioSA e clique em *Ok*
 
-Selecione o *comercioSA*
 
 Para abrir o banco inicial siga:
 
-File > Open SQL Script... 
+*File > Open SQL Script...* 
 
-Navegue até a pasta com o repositório clonado e selecione:
-
-init.sql
+Navegue até a pasta com o repositório clonado e selecione: *init.sql*
 
 Selecione tudo com Ctrl + A e aperte no icone de raio para criar o banco.
 
