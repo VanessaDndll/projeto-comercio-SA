@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import com.comerciosa.backend.entity.ClienteEntity;
 
 public interface clienteRepository extends JpaRepository<ClienteEntity, Integer> {
+    // Busca do cliente pelo CPF
     @Query("SELECT c FROM ClienteEntity c LEFT JOIN FETCH c.contatos WHERE c.cpf = :cpf")
     Optional<ClienteEntity> findByCpfWithContatos(@Param("cpf") String cpf);
 }

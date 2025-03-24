@@ -7,13 +7,14 @@ const dados = {
     contatos: null
 };
 
-const nome = document.getElementById("nome");
+const nome = document.getElementById("nomeResult");
 const cpfResult = document.getElementById("cpfResult");
 const dataNascimento = document.getElementById("dataNascimento");
-const endereco = document.getElementById("endereco");
+const endereco = document.getElementById("enderecoResult");
 
 let editando = false;
 
+// FUNCTION DE BUSCAR CLIENTE
 async function buscarCliente() {
     const cpf = document.getElementById("cpf").value
 
@@ -24,7 +25,7 @@ async function buscarCliente() {
         console.log("Resposta da API:", data);
 
         if (!data) {
-            throw new Error("Nenhum cliente encontrado.");
+            alert("Nenhum cliente encontrado.");
         }
 
         dados.id = data.id;
@@ -36,10 +37,12 @@ async function buscarCliente() {
 
         preencherTabela(data);
     } catch (error) {
+        alert("Cliente não encontrado.")
         console.error("Erro ao buscar cliente:", error);
     }
 }
 
+// FUNCTION PARA PREENCHER COM OS DADOS
 function preencherTabela(cliente) {
     nome.value = cliente.nome;
     cpfResult.value = cliente.cpf;
@@ -83,12 +86,13 @@ function editar() {
     trocarBotao()
 }
 
+// FUNCTION DO buttonSalvar PARA SALVAR A EDICAO
 function salvarEdicao() {
 
-    dados.nome = document.querySelector('#nome').value
+    dados.nome = document.querySelector('#nomeResult').value
     dados.cpf = document.querySelector('#cpfResult').value
     dados.dataNascimento = document.querySelector('#dataNascimento').value
-    dados.endereco = document.querySelector('#endereco').value
+    dados.endereco = document.querySelector('#enderecoResult').value
 
     console.log('dados: ', dados);
 
@@ -124,6 +128,7 @@ function salvarEdicao() {
     });
 }
 
+// FUNCTION DO buttonExcluir PARA EXCLUIR O CLIENTE E SEUS CONTATOS
 function excluir() {
     let confirmacao = confirm("Deseja excluir o cliente e todos os seus contatos?");
     if (confirmacao === true) {
@@ -139,7 +144,7 @@ function excluir() {
     }
 }
 
-
+// FUNCTION PARA TROCAR ENTRE buttonSalvar E buttonExcluir
 function trocarBotao() {
     const excluirBtn = document.querySelector('#buttonExcluir');
     const salvarBtn = document.querySelector('#buttonSalvar');

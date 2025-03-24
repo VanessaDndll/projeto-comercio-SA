@@ -20,14 +20,13 @@
         </nav>
     </header><br>
 
-    <h2>Área de edição</h2> <br>
-    
     <!-- --- BUSCA DE CLIENTE E CONTATOS PELO CPF --- -->
+    <h2>Busca de dados</h2> <br>
+
     <div class="edicao">
-        <h3>EDIÇÃO/BUSCA/EXCLUIR</h3><br>
 
             <label for="cpf">CPF:</label><br>
-                <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF..." maxlength="14"><br><br>
+                <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF..." maxlength="14"><br>
 
             <button onclick="buscarCliente()" id="button_buscar_informacao">Buscar informações</button>
 
@@ -37,29 +36,65 @@
     <hr>
 
     <!-- RESULTADO DA BUSCA -->
+    <br>
+    
     <div class="resultadoBusca">
-        <h3>Dados do cliente</h3><br>
-        <p>Nome: <input type="text" readonly id="nome"></input type="text" readonly></p>
-        <p>CPF: <input type="text" readonly id="cpfResult"></input type="text" readonly></p>
-        <p>Data de nascimento: <input type="date" readonly id="dataNascimento"></input type="text" readonly></p>
-        <p>Endereço: <input type="text" readonly id="endereco"></input type="text" readonly></p>
+        <div class="dados-cliente">
+            <h3>Dados do cliente</h3><br>
+            <p>Nome: <input type="text" readonly id="nomeResult"></p>
+            <p>CPF: <input type="text" readonly id="cpfResult" maxlength="14"></p>
+            <p>Data de nascimento: <input type="date" readonly id="dataNascimento"></p>
+            <p>Endereço: <input type="text" readonly id="enderecoResult"></p><br>
+        </div>
         <div id="contatosCliente"></div>
     </div>
+
+    <br>
+
     <div class="botoesEditarExcluir">
         <button id="buttonEditar" onclick="editar()">Editar</button>
         <button id="buttonSalvar" onclick="salvarEdicao()">Salvar</button>
         <button id="buttonExcluir" onclick="excluir()">Excluir</button>
     </div>
 
+    <!-- ------------------------------------------------- -->
+
     <br>
 
     <script>
+        // script para a data estar no máximo no dia atual
         const hoje = new Date().toISOString().split("T")[0];
         document.getElementById("dataNascimento").setAttribute("max", hoje);
-    </script>
 
-    
-    
+        function formatCPF(value) {
+            let cpf = value.replace(/\D/g, '');
+            
+            if (cpf.length > 9) {
+                cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/, "$1.$2.$3-$4");
+            } else {
+                cpf = cpf.replace(/(\d{3})(\d{3})(\d{1,3})/, "$1.$2.$3");
+            }
+            
+            return cpf;
+        }
+
+        // script para formatar o cpf
+        document.getElementById("cpf").addEventListener("input", function(event) {
+            let input = event.target;
+            let formattedCPF = formatCPF(input.value);
+
+            input.value = formattedCPF;
+            document.getElementById("cpf").value = formattedCPF;
+        });
+
+        document.getElementById("cpfResult").addEventListener("input", function(event) {
+            let inputResult = event.target;
+            let formattedCPFResult = formatCPF(inputResult.value);
+
+            inputResult.value = formattedCPFResult;
+            document.getElementById("cpfResult").value = formattedCPFResult;
+        });
+    </script>
 
 </body>
 </html>

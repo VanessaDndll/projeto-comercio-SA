@@ -29,7 +29,6 @@ function buscarClienteContato() {
                         `;
                     });
 
-
                 } else {
                     tabela.innerHTML += `
                         <td class="linhaListagem">${cliente.nome}</td>

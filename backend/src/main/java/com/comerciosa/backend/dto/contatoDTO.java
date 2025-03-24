@@ -16,9 +16,7 @@ public class ContatoDTO {
         BeanUtils.copyProperties(contato, this);
     }
 
-    public ContatoDTO() {
-        
-    }
+    public ContatoDTO() {}
 
     // Getters and Setters
     public Integer getId() {

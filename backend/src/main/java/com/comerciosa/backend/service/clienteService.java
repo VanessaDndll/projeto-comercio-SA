@@ -23,6 +23,20 @@ public class ClienteService {
     @Autowired
     private ContatoRepository contatoRepository;
 
+    // READ
+    public List<ClienteDTO> listarClientes() {
+        List<ClienteEntity> cliente = clienteRepository.findAll();
+        return cliente.stream().map(ClienteDTO::new).toList();
+    }
+
+    // READ BY CPF
+    @Transactional
+    public ClienteEntity buscarCliente(String cpf) {
+        return clienteRepository.findByCpfWithContatos(cpf)
+                .orElse(null);
+    }
+
+    // CREATE
     @Transactional
     public ClienteDTO inserir(ClienteDTO dto) {
         final ClienteEntity cliente = new ClienteEntity(dto);
@@ -40,19 +54,6 @@ public class ClienteService {
             System.out.println("Contato is null. gotta fix it");
         }
         return new ClienteDTO(savedCliente);
-    }
-
-    // Bucando cliente por cpf
-    @Transactional
-    public ClienteEntity buscarCliente(String cpf) {
-        return clienteRepository.findByCpfWithContatos(cpf)
-                .orElse(null);
-    }
-
-    // READ
-    public List<ClienteDTO> listarClientes() {
-        List<ClienteEntity> cliente = clienteRepository.findAll();
-        return cliente.stream().map(ClienteDTO::new).toList();
     }
 
     // UPDATE

@@ -29,6 +29,7 @@ public class ClienteEntity {
     
     private String endereco;
 
+    // Chave estrangeira
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<ContatoEntity> contatos;

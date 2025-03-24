@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-// import org.springframework.beans.BeanUtils;
-
 import com.comerciosa.backend.entity.ClienteEntity;
 
 public class ClienteDTO {
@@ -25,7 +23,6 @@ public class ClienteDTO {
         this.endereco = cliente.getEndereco();
         this.contatos = (cliente.getContatos() != null) ? cliente.getContatos().stream().map(ContatoDTO::new).collect(Collectors.toList()) : new ArrayList<>();
     }
-
 
     public ClienteDTO() {}
 
@@ -67,6 +64,5 @@ public class ClienteDTO {
     public void setContato(List<ContatoDTO> contatos) {
         this.contatos = contatos;
     }
-
     
 }

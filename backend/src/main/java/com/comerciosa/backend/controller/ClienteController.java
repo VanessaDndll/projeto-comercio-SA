@@ -26,7 +26,13 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
-    // Bucando cliente pelo cpf
+    // READ
+    @GetMapping
+    public List<ClienteDTO> listarClientes() {
+        return clienteService.listarClientes();
+    }
+
+    // READ BY CPF
     @GetMapping("/buscar")
     public ResponseEntity<ClienteEntity> buscarCliente(@RequestParam String cpf) {
 
@@ -38,17 +44,11 @@ public class ClienteController {
         }
     }
 
-    // Cadastrar cliente
+    // CREATE
     @PostMapping("/cadastrar")
     public ResponseEntity<ClienteDTO> inserir(@RequestBody ClienteDTO cliente) {
         ClienteDTO clienteSalvo = clienteService.inserir(cliente);
         return ResponseEntity.status(201).body(clienteSalvo);
-    }
-
-    // READ
-    @GetMapping
-    public List<ClienteDTO> listarClientes() {
-        return clienteService.listarClientes();
     }
 
     // UPDATE
@@ -61,22 +61,10 @@ public class ClienteController {
         return ResponseEntity.ok(new ClienteDTO(updated));
     }
 
-    // UPDATE
-    // @PutMapping("/{id}")
-    // public ResponseEntity<ClienteDTO> atualizarCliente(
-    // @PathVariable String id,
-    // @RequestBody ClienteDTO dto) {
-    // Integer idEmInt = Integer.parseInt(id);
-    // dto.setId(idEmInt);
-    // ClienteEntity updated = clienteService.atualizarCliente(dto);
-    // return ResponseEntity.ok(new ClienteDTO(updated));
-    // }
-
     // DELETE
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable Integer id) {
         clienteService.excluir(id);
         return ResponseEntity.ok().build();
     }
-
 }

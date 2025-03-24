@@ -31,7 +31,7 @@ public class ContatoEntity {
 
     private String observacao;
 
-
+    // Chave estrangeira
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_id", nullable = false)
     @JsonBackReference

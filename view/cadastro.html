@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../controller/style.css">
+  <script src="cadastrar.js" defer></script>
   <title>Cadastro</title>
 </head>
 
@@ -14,9 +15,9 @@
     <nav class="nav">
       <ul class="nav-list">
         <li><a href="index.html">Início</a></li>
-        <li><a href="cadastro.html">Cadastro</a></li>
+        <li><a href="cadastro.html">Cadastrar</a></li>
         <li><a href="listagem.html">Listagem</a></li>
-        <li><a href="busca-edicao-excluir.html">Busca</a></li>
+        <li><a href="busca-edicao-excluir.html">Buscar</a></li>
       </ul>
     </nav>
   </header><br>
@@ -45,91 +46,27 @@
       <br>
       <h4>Contatos</h4><br>
       <div id="contato"></div>
-      <button type="button" onclick="adicionarContato()">Adicionar Contato</button><br><br>
+      <button class="btn-adicionar-contato" type="button" onclick="adicionarContato()">Adicionar Contato</button><br><br>
 
       <button type="submit" id="button_cadastrar">Cadastrar</button>
     </form>
   </div><br>
 
   <script>
+    // script para formatar o cpf
     const hoje = new Date().toISOString().split("T")[0];
     document.getElementById("data_nascimento").setAttribute("max", hoje);
 
-    let contName = 1;
-
-    function adicionarContato() {
-      let div = document.createElement("div");
-      div.classList.add("contato-group");
-
-      div.innerHTML = `
-                <select name="tipo${contName}">
-                    <option value="telefone">Telefone</option>
-                    <option value="email">E-mail</option>
-                </select>
-                <input type="text" name="valor${contName}" required>
-                <textarea name="observacao${contName}" ></textarea>
-                <button type="button" onclick="removerContato(this)">Remover</button><br><br>
-            `;
-      contName++;
-      document.getElementById("contato").appendChild(div);
-    }
-
-    function removerContato(botao) {
-      botao.parentNode.remove();
-    }
-
-    document.getElementById("form_cadastro").addEventListener("submit", async function (event) {
-      event.preventDefault();
-
-      console.log("Enviando form");
-      
-
-      // Build the client object from form fields
-      const cliente = {
-        nome: document.getElementById("nome").value,
-        cpf: document.getElementById("cpf").value,
-        dataNascimento: document.getElementById("data_nascimento").value,
-        endereco: document.getElementById("endereco").value,
-        contato: []
-      };
-
-      let contNamePush = 1;
-
-      // Loop over each contact group
-      document.querySelectorAll(".contato-group").forEach(group => {
-        const tipo = group.querySelector(`select[name="tipo${contNamePush}"]`).value;
-        const valor = group.querySelector(`input[name="valor${contNamePush}"]`).value;
-        const observacao = group.querySelector(`textarea[name="observacao${contNamePush}"]`).value;
-        contNamePush++;
-        cliente.contato.push({
-          tipo,
-          valor,
-          observacao
+    document.getElementById("cpf").addEventListener("input", function(event) {
+            let input = event.target;
+            let value = input.value.replace(/\D/g, ''); 
+            if (value.length > 9) {
+                value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/, "$1.$2.$3-$4");
+            } else {
+                value = value.replace(/(\d{3})(\d{3})(\d{1,3})/, "$1.$2.$3");
+            }
+            input.value = value;
         });
-      });
-
-      try {
-        const response = await fetch("http://localhost:8080/cliente/cadastrar", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(cliente)
-        });
-        console.log(`Conteudo sendo enviado: `, cliente);
-        
-        if (response.ok) {
-          alert("Cliente cadastrado com sucesso!");
-          // Optionally, reset the form:
-          document.getElementById("form_cadastro").reset();
-          document.getElementById("contato").innerHTML = "";
-        } else {
-          alert("Erro ao cadastrar o cliente.");
-        }
-      } catch (error) {
-        console.error("Erro:", error);
-      }
-    });
   </script>
 
 </body>
