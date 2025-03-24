@@ -65,7 +65,7 @@ Navegue até a pasta com o repositório clonado e selecione: *init.sql*
 Selecione tudo com Ctrl + A e aperte no icone de raio para criar o banco.
 
 ### Ativando a API
-Com a pasta extraída já na IDE, abra o terminal com o comando ctrl + J.
+Com a pasta extraída já na IDE, abra o terminal com o atalho Ctrl + J.
 
 Certifique-se que você está no caminho certo:
 
